@@ -1,6 +1,6 @@
 import { UserBusiness } from "../../src/business/UserBusiness";
-import { LoginSchema } from "../../src/dtos/user/login.dto";
-import { UnauthorizedError } from "../../src/errors";
+import { SignupSchema } from "../../src/dtos/user/signup.dto";
+import { UnprocessableEntityError } from "../../src/errors";
 import { IdServiceMock } from "../mocks/IdServiceMock";
 import { PasswordServiceMock } from "../mocks/PasswordServiceMock";
 import { TokenServiceMock } from "../mocks/TokenServiceMock";
@@ -14,24 +14,28 @@ describe("Testando login", () => {
     new PasswordServiceMock()
   );
 
-  test("Deve gerar token ao logar", async () => {
-    const input = LoginSchema.parse({
-      email: "fulano@email.com",
-      password: "fulano_pass",
+  test("Deve retornar token ao cadastar novo usuário", async () => {
+    const input = SignupSchema.parse({
+      apelido: "Novo User",
+      email: "novo@email.com",
+      password: "novo_pass",
     });
 
-    const output = await userBusiness.login(input);
+    const output = await userBusiness.signup(input);
 
     expect(output).toHaveProperty("token");
     expect(output.token).toBe("hash");
   });
 
-  test("Deve Gerar erro com senha incorreta", async () => {
-    const input = LoginSchema.parse({
-      email: "fulano@email.com",
-      password: "fail_password",
+  test("Deve Gerar erro para email duplicado", async () => {
+    const input = SignupSchema.parse({
+      apelido: "Ciclano ja existe",
+      email: "ciclano@email.com",
+      password: "novo_pass",
     });
 
-    await expect(userBusiness.login(input)).rejects.toThrow(UnauthorizedError);
+    await expect(userBusiness.signup(input)).rejects.toThrow(
+      UnprocessableEntityError
+    );
   });
 });
