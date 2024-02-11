@@ -1,11 +1,11 @@
 import { NextFunction, Request, Response } from "express";
-import { UserBussiness } from "../bussiness/UserBussiness";
+import { UserBusiness } from "../business/UserBusiness";
 import { HTTP_STATUS } from "../constants/HttpStatus";
 import { LoginSchema } from "../dtos/user/login.dto";
 import { SignupSchema } from "../dtos/user/signup.dto";
 
 export class UserController {
-  constructor(private userBussiness: UserBussiness) {}
+  constructor(private userBussiness: UserBusiness) {}
 
   public signup = async (req: Request, res: Response, next: NextFunction) => {
     try {

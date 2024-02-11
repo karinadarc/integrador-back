@@ -8,7 +8,7 @@ import { IdService } from "../services/IdService";
 import { PasswordService } from "../services/PasswordService";
 import { TokenService } from "../services/TokenService";
 
-export class UserBussiness {
+export class UserBusiness {
   constructor(
     private userDatabase: UserDatabase,
     private idService: IdService,
