@@ -1,6 +1,7 @@
 import { UserDatabase } from "../database/UserDataBase";
+import { LoginInputDTO, LoginOutputDTO } from "../dtos/user/login.dto";
 import { SignupInputDTO, SignupOutputDTO } from "../dtos/user/signup.dto";
-import { UnprocessableEntityError } from "../errors";
+import { UnauthorizedError, UnprocessableEntityError } from "../errors";
 import { TokenPayload } from "../models/Token";
 import { User } from "../models/User";
 import { IdService } from "../services/IdService";
@@ -47,5 +48,30 @@ export class UserBussiness {
     return {
       token,
     };
+  };
+
+  public login = async (loginInput: LoginInputDTO): Promise<LoginOutputDTO> => {
+    const result = await this.userDatabase.getByEmail(loginInput.email);
+
+    if (result) {
+      const user = User.fromDatabaseModel(result);
+
+      if (
+        await this.passwordService.validate(
+          loginInput.password,
+          user.getPassword()
+        )
+      ) {
+        const payload: TokenPayload = {
+          id: user.getId(),
+          apelido: user.getApelido(),
+        };
+        const token = this.tokenService.generateToken(payload);
+
+        return { token };
+      }
+    }
+
+    throw new UnauthorizedError("Usuário ou senha inválidos");
   };
 }
