@@ -10,4 +10,11 @@ export class PasswordService {
 
     return await bcrypt.hash(password, salt);
   }
+
+  public validate = async (
+    plaintext: string,
+    hash: string
+  ): Promise<boolean> => {
+    return bcrypt.compare(plaintext, hash);
+  };
 }
