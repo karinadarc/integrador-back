@@ -15,4 +15,14 @@ export class TokenService {
       expiresIn: process.env.JWT_EXPIRES_IN || "1h",
     });
   }
+
+  /**
+   * Decodifica o token
+   * @param token
+   * @returns Token Payload
+   */
+  public decodeToken(token: string): TokenPayload {
+    const payload = jwt.verify(token, process.env.JWT_KEY as string);
+    return payload as TokenPayload;
+  }
 }
