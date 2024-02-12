@@ -26,4 +26,8 @@ export class UserDatabaseMock extends BaseDatabaseMock {
   public async getByEmail(email: string): Promise<UserDBModel | undefined> {
     return usersMock.filter((user) => user.email === email)[0];
   }
+
+  public getById = async (id: string): Promise<UserDBModel | undefined> => {
+    return usersMock.filter((user) => user.id === id)[0];
+  };
 }

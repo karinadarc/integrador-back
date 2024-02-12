@@ -1,10 +1,10 @@
-import { UserBusiness } from "../../src/business/UserBusiness";
-import { LoginSchema } from "../../src/dtos/user/login.dto";
-import { UnauthorizedError } from "../../src/errors";
-import { IdServiceMock } from "../mocks/IdServiceMock";
-import { PasswordServiceMock } from "../mocks/PasswordServiceMock";
-import { TokenServiceMock } from "../mocks/TokenServiceMock";
-import { UserDatabaseMock } from "../mocks/UserDatabaseMock";
+import { UserBusiness } from "../../../src/business/UserBusiness";
+import { LoginSchema } from "../../../src/dtos/user/login.dto";
+import { UnauthorizedError } from "../../../src/errors";
+import { IdServiceMock } from "../../mocks/IdServiceMock";
+import { PasswordServiceMock } from "../../mocks/PasswordServiceMock";
+import { TokenServiceMock } from "../../mocks/TokenServiceMock";
+import { UserDatabaseMock } from "../../mocks/UserDatabaseMock";
 
 describe("Testando login", () => {
   const userBusiness = new UserBusiness(
