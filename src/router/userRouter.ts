@@ -1,6 +1,6 @@
 import express from "express";
 import { UserBusiness } from "../business/UserBusiness";
-import { UserController } from "../controller/userController";
+import { UserController } from "../controller/UserController";
 import { UserDatabase } from "../database/UserDataBase";
 import { IdService } from "../services/IdService";
 import { PasswordService } from "../services/PasswordService";
