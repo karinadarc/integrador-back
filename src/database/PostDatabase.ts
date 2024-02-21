@@ -1,4 +1,4 @@
-import { PostDbModel } from "../models/Post";
+import { PostDbModel, PostWithCreatorDbModel } from "../models/Post";
 import { BaseDatabase } from "./BaseDataBase";
 
 export class PostDatabase extends BaseDatabase {
@@ -9,5 +9,28 @@ export class PostDatabase extends BaseDatabase {
       .returning("id");
 
     return result.id as string;
+  };
+
+  public getAllPosts = async (): Promise<PostWithCreatorDbModel[]> => {
+    const result: PostWithCreatorDbModel[] = await BaseDatabase.connection
+      .select(
+        `${this.TABLE_POSTS}.id`,
+        `${this.TABLE_POSTS}.creator_id`,
+        `${this.TABLE_POSTS}.content`,
+        `${this.TABLE_POSTS}.likes`,
+        `${this.TABLE_POSTS}.dislikes`,
+        `${this.TABLE_POSTS}.created_at`,
+        `${this.TABLE_POSTS}.updated_at`,
+        `${this.TABLE_USERS}.apelido AS creator_name`
+      )
+      .from<PostWithCreatorDbModel>(this.TABLE_POSTS)
+      .join(
+        this.TABLE_USERS,
+        `${this.TABLE_POSTS}.creator_id`,
+        "=",
+        `${this.TABLE_USERS}.id`
+      );
+
+    return result;
   };
 }
