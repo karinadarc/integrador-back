@@ -2,7 +2,7 @@ import { PostBussiness } from "../../../src/business/PostBusiness";
 import { UserModel } from "../../../src/models/User";
 import { IdServiceMock } from "../../mocks/IdServiceMock";
 import { PostDatabaseMock } from "../../mocks/PostDabataseMock";
-describe("Testando criação de posts", () => {
+describe("Testando recuperação de posts", () => {
   const postBussiness = new PostBussiness(
     new PostDatabaseMock(),
     new IdServiceMock()

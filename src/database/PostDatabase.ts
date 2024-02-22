@@ -11,6 +11,14 @@ export class PostDatabase extends BaseDatabase {
     return result.id as string;
   };
 
+  public getPostById = async (id: string): Promise<PostDbModel | undefined> => {
+    return await BaseDatabase.connection
+      .select()
+      .from<PostDbModel>(this.TABLE_POSTS)
+      .where({ id })
+      .first();
+  };
+
   public getAllPosts = async (): Promise<PostWithCreatorDbModel[]> => {
     const result: PostWithCreatorDbModel[] = await BaseDatabase.connection
       .select(
@@ -32,5 +40,12 @@ export class PostDatabase extends BaseDatabase {
       );
 
     return result;
+  };
+
+  public updatePost = async (post: PostDbModel): Promise<void> => {
+    await BaseDatabase.connection
+      .update(post)
+      .into(this.TABLE_POSTS)
+      .where("id", post.id);
   };
 }
