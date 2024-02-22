@@ -2,6 +2,8 @@ import type { Config } from "jest";
 
 const config: Config = {
   roots: ["<rootDir>/tests"],
+  silent: true,
+  verbose: true,
   transform: {
     "^.+\\.tsx?$": "ts-jest",
   },
