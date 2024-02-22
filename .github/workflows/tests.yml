@@ -6,6 +6,17 @@ on:
       - main
   pull_request:
 
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  actions: read
+  contents: write
+  checks: write
+  pull-requests: write
+  statuses: write
+
 jobs:
   testes:
     runs-on: ubuntu-latest
@@ -35,9 +46,3 @@ jobs:
           threshold_alert: 80
           threshold_warning: 90
           threshold_metric: "lines"
-        permissions:
-          actions: read
-          contents: write
-          checks: write
-          pull-requests: write
-          statuses: write
