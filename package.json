@@ -7,7 +7,7 @@
     "start": "tsc && node build/index.js",
     "dev": "ts-node-dev src/index.ts",
     "build": "tsc -p .",
-    "test": "jest"
+    "test": "jest --colors"
   },
   "repository": {
     "type": "git",
