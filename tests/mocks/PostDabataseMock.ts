@@ -37,4 +37,6 @@ export class PostDatabaseMock extends BaseDatabaseMock {
   };
 
   public updatePost = async (post: PostDbModel): Promise<void> => {};
+
+  public deletePost = async (post: PostDbModel): Promise<void> => {};
 }

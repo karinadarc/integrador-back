@@ -63,4 +63,20 @@ export class PostBussiness {
 
     await this.postDatabase.updatePost(post.toDatabaseModel());
   };
+
+  public deletePost = async (id: string, user: UserModel): Promise<void> => {
+    const result = await this.postDatabase.getPostById(id);
+
+    if (!result) {
+      throw new NotFoundError("Post não encontrado.");
+    }
+
+    const post = Post.fromDatabaseModel(result);
+
+    if (post.getCreatorId() !== user.id) {
+      throw new ForbidenError("Sem permissoes para remover o post");
+    }
+
+    await this.postDatabase.deletePost(post.toDatabaseModel());
+  };
 }
