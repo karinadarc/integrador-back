@@ -6,8 +6,19 @@ on:
       - main
   pull_request:
 
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  actions: read
+  contents: write
+  checks: write
+  pull-requests: write
+  statuses: write
+
 jobs:
-  build:
+  testes:
     runs-on: ubuntu-latest
 
     steps:
@@ -25,3 +36,13 @@ jobs:
 
       - name: Executa Testes
         run: npm run test
+
+      - name: Comenta cobertura de testes
+        uses: slavcodev/coverage-monitor-action@v1
+        if: github.event_name == 'pull_request'
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          coverage_path: "coverage/clover.xml"
+          threshold_alert: 80
+          threshold_warning: 90
+          threshold_metric: "lines"
