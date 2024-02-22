@@ -25,3 +25,13 @@ jobs:
 
       - name: Executa Testes
         run: npm run test
+
+      - name: Comenta cobertura de testes
+        uses: slavcodev/coverage-monitor-action@v1
+        if: github.event_name == 'pull_request'
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          coverage_path: "coverage/clover.xml"
+          threshold_alert: 80
+          threshold_warning: 90
+          threshold_metric: "lines"
