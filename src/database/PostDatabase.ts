@@ -1,3 +1,4 @@
+import { LikeDislikeDbModel } from "../models/LikeDislike";
 import { PostDbModel, PostWithCreatorDbModel } from "../models/Post";
 import { BaseDatabase } from "./BaseDataBase";
 
@@ -55,4 +56,69 @@ export class PostDatabase extends BaseDatabase {
       .from(this.TABLE_POSTS)
       .where("id", post.id);
   };
+
+  public async getPostlikeDeslikeByUser(
+    postId: string,
+    userId: string
+  ): Promise<LikeDislikeDbModel | undefined> {
+    return await BaseDatabase.connection
+      .select()
+      .from<LikeDislikeDbModel>(this.TABLE_LIKES_DISLIKES)
+      .where({
+        post_id: postId,
+        user_id: userId,
+      })
+      .first();
+  }
+
+  public async updatePostandAddLikeDislike(
+    post: PostDbModel,
+    likeDislike: LikeDislikeDbModel
+  ): Promise<void> {
+    await BaseDatabase.connection.transaction(async (transaction) => {
+      await transaction.insert(likeDislike).into(this.TABLE_LIKES_DISLIKES);
+
+      await transaction
+        .update(post)
+        .into(this.TABLE_POSTS)
+        .where("id", post.id);
+    });
+  }
+
+  public async updatePostAndRemoveLikeDislike(
+    post: PostDbModel,
+    likeDislike: LikeDislikeDbModel
+  ): Promise<void> {
+    await BaseDatabase.connection.transaction(async (transaction) => {
+      await transaction
+        .delete()
+        .from(this.TABLE_LIKES_DISLIKES)
+        .where(likeDislike);
+
+      await transaction
+        .update(post)
+        .into(this.TABLE_POSTS)
+        .where("id", post.id);
+    });
+  }
+
+  public async updatePostAndReplaceLikeDislike(
+    post: PostDbModel,
+    newLikeDislike: LikeDislikeDbModel,
+    oldLikeDislike: LikeDislikeDbModel
+  ): Promise<void> {
+    await BaseDatabase.connection.transaction(async (transaction) => {
+      await transaction
+        .delete()
+        .from(this.TABLE_LIKES_DISLIKES)
+        .where(oldLikeDislike);
+
+      await transaction.insert(newLikeDislike).into(this.TABLE_LIKES_DISLIKES);
+
+      await transaction
+        .update(post)
+        .into(this.TABLE_POSTS)
+        .where("id", post.id);
+    });
+  }
 }

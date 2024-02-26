@@ -6,6 +6,7 @@ dotenv.config();
 export abstract class BaseDatabase {
   readonly TABLE_USERS = "users";
   readonly TABLE_POSTS = "posts";
+  readonly TABLE_LIKES_DISLIKES = "likes_dislikes";
 
   protected static connection = knex({
     client: "sqlite3",

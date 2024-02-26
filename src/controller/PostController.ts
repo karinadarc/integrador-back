@@ -2,7 +2,9 @@ import { NextFunction, Request, Response } from "express";
 import { PostBussiness } from "../business/PostBusiness";
 import { HTTP_STATUS } from "../constants/HttpStatus";
 import { CreatePostSchema } from "../dtos/post/create.dto";
+import { LikeDeslikePostSchema } from "../dtos/post/like.dto";
 import { UpdatePostSchema } from "../dtos/post/update.dto";
+import { UUIDSchema } from "../dtos/uuid.dto";
 import { UserModel } from "../models/User";
 
 export class PostController {
@@ -71,6 +73,25 @@ export class PostController {
 
       console.info("INFO: post removido: %s", id);
       return res.status(HTTP_STATUS.NO_CONTENT).end();
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  public like = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const id = UUIDSchema.parse(req.params.id);
+      const likeInput = LikeDeslikePostSchema.parse({
+        like: req.body.like,
+      });
+      await this.postBussiness.likeDeslike(
+        id,
+        likeInput,
+        req.loggedUser as UserModel
+      );
+
+      console.info("INFO: Post %s atualizado", id);
+      res.status(HTTP_STATUS.NO_CONTENT).end();
     } catch (error) {
       next(error);
     }
