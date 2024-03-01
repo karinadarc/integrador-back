@@ -18,6 +18,7 @@ export class PostDatabaseMock extends BaseDatabaseMock {
         updated_at: "2024-02-12T01:03:03.080Z",
         creator_id: "11111111-1111-1111-1111-111111111111",
         creator_name: "Fulano",
+        comments: 0,
       },
     ];
   };

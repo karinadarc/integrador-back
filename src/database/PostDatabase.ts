@@ -30,7 +30,14 @@ export class PostDatabase extends BaseDatabase {
         `${this.TABLE_POSTS}.dislikes`,
         `${this.TABLE_POSTS}.created_at`,
         `${this.TABLE_POSTS}.updated_at`,
-        `${this.TABLE_USERS}.apelido AS creator_name`
+        `${this.TABLE_USERS}.apelido AS creator_name`,
+        BaseDatabase.connection(this.TABLE_COMMENTS)
+          .count("*")
+          .whereRaw("?? = ??", [
+            `${this.TABLE_COMMENTS}.post_id`,
+            `${this.TABLE_POSTS}.id`,
+          ])
+          .as("comments")
       )
       .from<PostWithCreatorDbModel>(this.TABLE_POSTS)
       .join(

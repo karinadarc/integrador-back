@@ -39,6 +39,7 @@ export class PostBussiness {
 
   public getPosts = async (user: UserModel): Promise<GetPostsOutputDTO> => {
     const result = await this.postDatabase.getAllPosts();
+    console.info(result);
 
     return result.map((post) => Post.fromDatabaseModel(post).toBusinessModel());
   };

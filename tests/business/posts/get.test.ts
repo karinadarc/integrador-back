@@ -29,6 +29,7 @@ describe("Testando recuperação de posts", () => {
       id: "a7102751-26c4-4606-bbf4-b4d97dae37c2",
       likes: 0,
       updatedAt: "2024-02-12T01:03:03.080Z",
+      comments: 0,
     });
   });
 });

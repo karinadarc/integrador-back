@@ -10,6 +10,7 @@ export interface PostDbModel {
 
 export interface PostWithCreatorDbModel extends PostDbModel {
   creator_name: string;
+  comments: Number;
 }
 
 export interface PostModel {
@@ -19,6 +20,7 @@ export interface PostModel {
   dislikes: number;
   createdAt: string;
   updatedAt: string;
+  comments: Number;
   creator: {
     creatorId: string;
     creatorName?: string;
@@ -34,7 +36,8 @@ export class Post {
     private dislikes: number,
     private createdAt: string,
     private updatedAt: string,
-    private creatorName?: string | undefined
+    private creatorName?: string | undefined,
+    private comments?: Number | undefined
   ) {}
 
   getId(): string {
@@ -123,6 +126,14 @@ export class Post {
     this.creatorName = name;
   }
 
+  public getComments(): Number {
+    return this.comments || 0;
+  }
+
+  public setComments(total: Number) {
+    this.comments = total;
+  }
+
   toDatabaseModel(): PostDbModel {
     return {
       id: this.id,
@@ -152,6 +163,10 @@ export class Post {
       post.setCreatorName(model.creator_name);
     }
 
+    if ("comments" in model) {
+      post.setComments(model.comments);
+    }
+
     return post;
   }
 
@@ -163,6 +178,7 @@ export class Post {
       dislikes: this.dislikes,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt,
+      comments: this.comments || 0,
       creator: {
         creatorId: this.creatorId,
         creatorName: this.creatorName,
