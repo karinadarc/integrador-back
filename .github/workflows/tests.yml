@@ -56,8 +56,12 @@ jobs:
       url: https://integrador-back-uk8c.onrender.com/health
 
     steps:
-      - name: Deploy para o render
-        env:
-          deploy_url: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
-        run: |
-          curl "$deploy_url"
+      - name: Aguarda deploy para o render
+        uses: bounceapp/render-action@0.6.0
+        with:
+          render-token: ${{ secrets.RENDER_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          service-id: integrador-back
+          retries: 3
+          wait: 10000
+          sleep: 5000
