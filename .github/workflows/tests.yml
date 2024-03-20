@@ -54,6 +54,8 @@ jobs:
     environment:
       name: render
       url: https://integrador-back-uk8c.onrender.com/health
+    permissions:
+      deployments: write
 
     steps:
       - name: Deploy para o render
