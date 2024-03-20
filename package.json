@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "tsc && node build/index.js",
+    "start": "node ./build/index.js",
     "dev": "ts-node-dev src/index.ts",
-    "build": "tsc -p .",
+    "build": "tsc",
     "test": "jest --colors"
   },
   "repository": {
