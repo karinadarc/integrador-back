@@ -46,3 +46,13 @@ jobs:
           threshold_alert: 80
           threshold_warning: 90
           threshold_metric: "lines"
+
+      - name: Deploy
+        if: github.ref == 'refs/heads/main'
+        env:
+          deploy_url: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+        environment:
+          name: render
+          url: https://integrador-back-uk8c.onrender.com/health
+        run: |
+          curl "$deploy_url"
