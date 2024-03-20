@@ -18,3 +18,7 @@ app.use(errorHandler);
 app.listen(Number(process.env.PORT) || 3003, () => {
   console.log(`Servidor rodando na porta ${Number(process.env.PORT) || 3003}`);
 });
+
+app.get("/health", (req, res) => {
+  res.send("ok");
+});
