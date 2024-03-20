@@ -61,7 +61,7 @@ jobs:
         with:
           render-token: ${{ secrets.RENDER_TOKEN }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          service-id: integrador-back
+          service-id: ${{ vars.RENDER_ID }}
           retries: 3
           wait: 10000
           sleep: 5000
