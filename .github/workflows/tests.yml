@@ -49,7 +49,7 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    needs: test
+    needs: testes
     if: github.ref == 'refs/heads/main'
     environment:
       name: render
