@@ -51,9 +51,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: testes
     if: github.ref == 'refs/heads/main'
-    environment:
-      name: render
-      url: https://integrador-back-uk8c.onrender.com/health
     permissions:
       deployments: write
 
