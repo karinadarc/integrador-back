@@ -1,4 +1,4 @@
-name: Executa testes
+name: Executa testes e Deploy
 
 on:
   push:
