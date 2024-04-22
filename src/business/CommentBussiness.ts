@@ -43,4 +43,12 @@ export class CommentBussiness {
     );
     return { id };
   };
+
+  public async getComments(postId: string) {
+    const result = await this.commentsDatabase.getCommentsByPostId(postId);
+
+    return result.map((comment) =>
+      Comment.fromDatabaseModel(comment).toBusinessModel()
+    );
+  }
 }

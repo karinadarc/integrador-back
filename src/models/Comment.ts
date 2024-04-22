@@ -102,4 +102,12 @@ export class Comment {
       created_at: this.getCreatedAt(),
     };
   }
+
+  toBusinessModel() {
+    throw new Error("Method not implemented.");
+  }
+
+  static fromDatabaseModel(comment: CommentDbModelComplete): Comment {
+    throw new Error("Method not implemented.");
+  }
 }
