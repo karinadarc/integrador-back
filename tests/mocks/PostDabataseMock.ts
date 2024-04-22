@@ -23,6 +23,25 @@ export class PostDatabaseMock extends BaseDatabaseMock {
     ];
   };
 
+  public getPostByIdCompleto = async (
+    id: string
+  ): Promise<PostWithCreatorDbModel | undefined> => {
+    if (id === "not-found") {
+      return undefined;
+    }
+    return {
+      id,
+      content: "content",
+      likes: 0,
+      dislikes: 0,
+      created_at: "2024-02-12T01:03:03.080Z",
+      updated_at: "2024-02-12T01:03:03.080Z",
+      creator_id: "11111111-1111-1111-1111-111111111111",
+      creator_name: "Fulano",
+      comments: 0,
+    };
+  };
+
   public getPostById = async (id: string): Promise<PostDbModel | undefined> => {
     if (id === "not-found") {
       return undefined;

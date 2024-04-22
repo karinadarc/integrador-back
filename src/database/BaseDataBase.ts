@@ -8,6 +8,7 @@ export abstract class BaseDatabase {
   readonly TABLE_POSTS = "posts";
   readonly TABLE_LIKES_DISLIKES = "likes_dislikes";
   readonly TABLE_COMMENTS = "comments";
+  readonly TABLE_LIKES_DISLIKES_COMMENTS = "likes_dislikes_comments";
 
   protected static connection = knex({
     client: "sqlite3",
