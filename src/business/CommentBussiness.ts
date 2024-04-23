@@ -4,8 +4,10 @@ import {
   CreateCommentInputDTO,
   CreateCommentOutputDTO,
 } from "../dtos/comment/create.dto";
+import { LikeDeslikeCommentPostInputDTO } from "../dtos/comment/like.dto";
 import { NotFoundError } from "../errors";
 import { Comment, CommentModel } from "../models/Comment";
+import { LikeDeslikeComment } from "../models/LikeDislikeComment";
 import { UserModel } from "../models/User";
 import { IdService } from "../services/IdService";
 
@@ -49,6 +51,48 @@ export class CommentBussiness {
 
     return result.map((comment) =>
       Comment.fromDatabaseModel(comment).toBusinessModel()
+    );
+  }
+
+  public async likeDeslike(
+    commentId: string,
+    input: LikeDeslikeCommentPostInputDTO,
+    user: UserModel
+  ): Promise<void> {
+    const databaseComment = await this.commentsDatabase.getCommentById(
+      commentId
+    );
+    if (!databaseComment) {
+      throw new NotFoundError("Comentário não encontrado.");
+    }
+
+    const comment = Comment.fromDatabaseModel(databaseComment);
+
+    const oldLikeDislike =
+      await this.commentsDatabase.getCommentlikeDeslikeByUser(
+        comment.getId(),
+        user.id
+      );
+
+    const newLikeDislike = new LikeDeslikeComment(
+      user.id,
+      comment.getId(),
+      input.like
+    );
+
+    if (!oldLikeDislike) {
+      return await this.commentsDatabase.addLikeDislike(
+        newLikeDislike.toDatabaseModel()
+      );
+    }
+
+    if (oldLikeDislike.like === newLikeDislike.toDatabaseModel().like) {
+      return await this.commentsDatabase.removeLikeDislike(oldLikeDislike);
+    }
+
+    return await this.commentsDatabase.invertLikeDislike(
+      oldLikeDislike,
+      newLikeDislike.toDatabaseModel()
     );
   }
 }
