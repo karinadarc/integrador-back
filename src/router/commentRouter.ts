@@ -18,6 +18,7 @@ export const authCommentRouter = (authMiddleware: AuthMiddleware): Router => {
     )
   );
 
+  commentRouter.get("/:id", controller.all);
   commentRouter.post("/:id", controller.create);
 
   return commentRouter;

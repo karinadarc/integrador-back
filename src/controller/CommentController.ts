@@ -25,4 +25,14 @@ export class CommentController {
       next(error);
     }
   };
+
+  public all = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const id = req.params.id;
+      const output = await this.commentBussisnes.getComments(id);
+      return res.send(output);
+    } catch (error) {
+      next(error);
+    }
+  };
 }

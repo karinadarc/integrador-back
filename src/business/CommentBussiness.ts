@@ -5,7 +5,7 @@ import {
   CreateCommentOutputDTO,
 } from "../dtos/comment/create.dto";
 import { NotFoundError } from "../errors";
-import { Comment } from "../models/Comment";
+import { Comment, CommentModel } from "../models/Comment";
 import { UserModel } from "../models/User";
 import { IdService } from "../services/IdService";
 
@@ -44,7 +44,7 @@ export class CommentBussiness {
     return { id };
   };
 
-  public async getComments(postId: string) {
+  public async getComments(postId: string): Promise<CommentModel[]> {
     const result = await this.commentsDatabase.getCommentsByPostId(postId);
 
     return result.map((comment) =>

@@ -17,6 +17,17 @@ export interface CommentDbModelComplete extends CommentDbModel {
   creator_name: string;
 }
 
+export interface CommentModel {
+  id: string;
+  user_id: string;
+  post_id: string;
+  content: string;
+  created_at: string;
+  likes: number;
+  dislikes: number;
+  creator_name?: string;
+}
+
 export class Comment {
   constructor(
     private id: string,
@@ -103,11 +114,29 @@ export class Comment {
     };
   }
 
-  toBusinessModel() {
-    throw new Error("Method not implemented.");
+  toBusinessModel(): CommentModel {
+    return {
+      id: this.getId(),
+      user_id: this.getUserId(),
+      post_id: this.getPostId(),
+      content: this.getContent(),
+      created_at: this.getCreatedAt(),
+      likes: this.getLikes(),
+      dislikes: this.getDislikes(),
+      creator_name: this.getCreatorName(),
+    };
   }
 
   static fromDatabaseModel(comment: CommentDbModelComplete): Comment {
-    throw new Error("Method not implemented.");
+    return new Comment(
+      comment.id,
+      comment.user_id,
+      comment.post_id,
+      comment.content,
+      comment.created_at,
+      comment.likes,
+      comment.dislikes,
+      comment.creator_name
+    );
   }
 }

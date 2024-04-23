@@ -12,7 +12,7 @@ export class CommentsDatabase extends BaseDatabase {
   };
 
   public getCommentsByPostId = async (
-    postId
+    postId: string
   ): Promise<CommentDbModelComplete[]> => {
     const result: CommentDbModelComplete[] = await BaseDatabase.connection
       .select(
@@ -40,11 +40,11 @@ export class CommentsDatabase extends BaseDatabase {
       .from<CommentDbModelComplete>(this.TABLE_COMMENTS)
       .join(
         this.TABLE_USERS,
-        `${this.TABLE_POSTS}.user_id`,
+        `${this.TABLE_COMMENTS}.user_id`,
         "=",
         `${this.TABLE_USERS}.id`
       )
-      .where(`${this.TABLE_POSTS}.id`, postId);
+      .where(`${this.TABLE_COMMENTS}.post_id`, postId);
 
     return result;
   };
