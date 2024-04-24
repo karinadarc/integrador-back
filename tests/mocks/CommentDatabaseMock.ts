@@ -54,7 +54,7 @@ export class CommentDatabaseMock extends BaseDatabaseMock {
       return undefined;
     }
     return {
-      user_id: "11111111-1111-1111-1111-111111111111",
+      user_id: userId,
       comment_id: commentId,
       like: Number(commentId === "liked"),
     };

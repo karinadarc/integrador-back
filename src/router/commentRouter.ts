@@ -20,6 +20,7 @@ export const authCommentRouter = (authMiddleware: AuthMiddleware): Router => {
 
   commentRouter.get("/:id", controller.all);
   commentRouter.post("/:id", controller.create);
+  commentRouter.put("/:id/like", controller.likeDislike);
 
   return commentRouter;
 };

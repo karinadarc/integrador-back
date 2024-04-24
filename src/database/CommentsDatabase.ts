@@ -45,9 +45,7 @@ export class CommentsDatabase extends BaseDatabase {
         "=",
         `${this.TABLE_USERS}.id`
       )
-      .where({
-        id: commentId,
-      })
+      .where(`${this.TABLE_COMMENTS}.id`, commentId)
       .first();
   };
 
