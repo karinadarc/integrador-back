@@ -1,13 +1,11 @@
 <h1 align="center">Integrador Back</h1>
 
 <p align="center">
-  <img alt="Principal linguagem do projeto" src="https://img.shields.io/github/languages/top/karinadarc/integrador-back?color=56BEB8">
+  <img alt="Principal linguagem do projeto" src="https://img.shields.io/github/languages/top/karinadarc/integrador-back">
 
-  <img alt="Quantidade de linguagens utilizadas" src="https://img.shields.io/github/languages/count/karinadarc/integrador-back?color=56BEB8">
+  <img alt="Tamanho do repositório" src="https://img.shields.io/github/repo-size/karinadarc/integrador-back">
 
-  <img alt="Tamanho do repositório" src="https://img.shields.io/github/repo-size/karinadarc/integrador-back?color=56BEB8">
-
-  <img alt="Licença" src="https://img.shields.io/github/license/karinadarc/integrador-back?color=56BEB8">
+  <img alt="Licença" src="https://img.shields.io/github/license/karinadarc/integrador-back">
 
 </p>
 
