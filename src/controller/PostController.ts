@@ -37,6 +37,16 @@ export class PostController {
     }
   };
 
+  public getPost = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const id = req.params.id;
+      const output = await this.postBussiness.getPost(id);
+      return res.status(HTTP_STATUS.OK).send(output);
+    } catch (error) {
+      next(error);
+    }
+  };
+
   public updatePost = async (
     req: Request,
     res: Response,

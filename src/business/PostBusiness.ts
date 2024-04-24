@@ -3,7 +3,7 @@ import {
   CreatePostInputDTO,
   CreatePostOutputDTO,
 } from "../dtos/post/create.dto";
-import { GetPostsOutputDTO } from "../dtos/post/get.dto";
+import { GetPostOutputDTO, GetPostsOutputDTO } from "../dtos/post/get.dto";
 import { LikeDeslikePostInputDTO } from "../dtos/post/like.dto";
 import { UpdatePostInputDTO } from "../dtos/post/update.dto";
 import { ForbidenError, NotFoundError } from "../errors";
@@ -41,6 +41,15 @@ export class PostBussiness {
     const result = await this.postDatabase.getAllPosts();
 
     return result.map((post) => Post.fromDatabaseModel(post).toBusinessModel());
+  };
+
+  public getPost = async (postId: string): Promise<GetPostOutputDTO> => {
+    const post = await this.postDatabase.getPostByIdCompleto(postId);
+
+    if (!post) {
+      throw new NotFoundError("Post não encontrado.");
+    }
+    return Post.fromDatabaseModel(post).toBusinessModel();
   };
 
   public updatePost = async (

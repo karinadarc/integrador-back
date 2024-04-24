@@ -52,7 +52,9 @@ O Labook é uma rede social com o objetivo de promover a conexão e interação 
   - [x] get posts
   - [x] edit post
   - [x] delete post
+  - [x] add comment
   - [x] like / dislike post
+  - [x] like / dislike comment
 
 - Autenticação e autorização
 
