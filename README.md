@@ -35,8 +35,12 @@ O Labook é uma rede social com o objetivo de promover a conexão e interação 
 
 ### Lista de requisitos
 
+- [Front End Link](https://projeto-final-integrador-front.onrender.com)
 - [Documentação Postman de todos os endpoints](https://documenter.getpostman.com/view/28315573/2sA35HXgjA)
 - [Render Enpoint Backend](https://integrador-back-uk8c.onrender.com)
+
+> [!IMPORTANT]
+> O acesso pode demorar alguns segundos na primeira requisição devido a camada gratuita do render
 
 - Testes
 
