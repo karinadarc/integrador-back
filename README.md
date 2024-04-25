@@ -42,9 +42,9 @@ O Labook é uma rede social com o objetivo de promover a conexão e interação 
 
 ### Deploys
 
-- [Front End Link Render](https://projeto-final-integrador-front.onrender.com)
-- [Enpoint Backend Render](https://integrador-back-uk8c.onrender.com)
-- [Documentação Postman de todos os endpoints](https://documenter.getpostman.com/view/28315573/2sA35HXgjA)
+- [Deploy - Front End](https://projeto-final-integrador-front.onrender.com)
+- [Deploy - Backend Render](https://integrador-back-uk8c.onrender.com)
+- [Documentação Postman](https://documenter.getpostman.com/view/28315573/2sA35HXgjA)
 
 > [!IMPORTANT]
 > O acesso pode demorar alguns segundos na primeira requisição devido a camada gratuita do render
