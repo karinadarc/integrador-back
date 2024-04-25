@@ -33,10 +33,14 @@ O Labook é uma rede social com o objetivo de promover a conexão e interação 
 :heavy_check_mark: Função para curtir e descurtir posts;\
 :heavy_check_mark: Deploy no render;\
 
-### Lista de requisitos
+## Links
+
+### Repositórios
 
 - [Repositório Frontend](https://github.com/karinadarc/projeto-final-integrador-front)
 - [Repositório Backend](https://github.com/karinadarc/integrador-back)
+
+### Deploys
 
 - [Front End Link Render](https://projeto-final-integrador-front.onrender.com)
 - [Enpoint Backend Render](https://integrador-back-uk8c.onrender.com)
@@ -44,6 +48,8 @@ O Labook é uma rede social com o objetivo de promover a conexão e interação 
 
 > [!IMPORTANT]
 > O acesso pode demorar alguns segundos na primeira requisição devido a camada gratuita do render
+
+### Lista de requisitos
 
 - Testes
 
