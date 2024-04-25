@@ -33,10 +33,23 @@ O Labook é uma rede social com o objetivo de promover a conexão e interação 
 :heavy_check_mark: Função para curtir e descurtir posts;\
 :heavy_check_mark: Deploy no render;\
 
-### Lista de requisitos
+## Links
 
-- [Documentação Postman de todos os endpoints](https://documenter.getpostman.com/view/28315573/2sA35HXgjA)
-- [Render Enpoint Backend](https://integrador-back-uk8c.onrender.com)
+### Repositórios
+
+- [Repositório Frontend](https://github.com/karinadarc/projeto-final-integrador-front)
+- [Repositório Backend](https://github.com/karinadarc/integrador-back)
+
+### Deploys
+
+- [Deploy - Front End](https://projeto-final-integrador-front.onrender.com)
+- [Deploy - Backend Render](https://integrador-back-uk8c.onrender.com)
+- [Documentação Postman](https://documenter.getpostman.com/view/28315573/2sA35HXgjA)
+
+> [!IMPORTANT]
+> O acesso pode demorar alguns segundos na primeira requisição devido a camada gratuita do render
+
+### Lista de requisitos
 
 - Testes
 
